@@ -12,10 +12,10 @@ The following shows how the project was organized, inspired by the
 * `org.nasa.marsrover.rover`
     * `core`
         * `application`  
-          Contains the implementation of the core use cases like maneuvering the `Rover` in a `Terrain`.
+          Contains implementation of core domain logic / use cases like maneuvering the `Rover` in a `Terrain`.
         * `ports`  
           Contains definition of ports (input and output ports) that allow communication between the core and adapters.
-    * `adapters`
+    * `adapters`  
       Contains implementation of input adapters that executes the core use cases and output adapters used by the core.
 
 ***  
@@ -34,7 +34,7 @@ $ cd mars-rover
 $ ./gradlew build
 ```
 
-#### Run the jar output
+#### Run the application
 
 ```
 $ java -jar .\build\libs\mars-rover-1.0-SNAPSHOT.jar
@@ -47,6 +47,11 @@ Type 'exit' to end)
 0,1,W
 ```
 
+Hint: You can teleport the rover by inputting x,y,direction format.
+```
+1,1,E
+```
+The above input will teleport the rover to x=1,y=1, and facing East
 
 ### Roadmap
 
