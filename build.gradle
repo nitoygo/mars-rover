@@ -2,12 +2,6 @@ plugins {
     id 'java'
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'org.nasa.Main'
-    }
-}
-
 group = 'org.nasa'
 version = '1.0-SNAPSHOT'
 
@@ -21,11 +15,18 @@ dependencies {
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
 }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.nasa.Main'
     }
 }
 
