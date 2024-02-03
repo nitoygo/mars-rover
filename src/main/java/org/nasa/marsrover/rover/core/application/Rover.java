@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.nasa.marsrover.rover.common.types.Coordinates;
 import org.nasa.marsrover.rover.common.types.Orientation;
 import org.nasa.marsrover.rover.common.types.Terrain;
+import org.nasa.marsrover.rover.core.application.utils.OrientationUtil;
 
 @Setter
 @Getter
@@ -20,7 +21,7 @@ public class Rover {
 
     private Rover() {
         location = new Coordinates(0, 0);
-        facing = Orientation.NORTH;
+        facing = Orientation.FACING_NORTH;
     }
 
     public static Rover getInstance() {
@@ -30,7 +31,19 @@ public class Rover {
         return instance;
     }
 
+    public void faceLeft() {
+        // make the rover's body face left
+        facing = OrientationUtil.turnLeft(facing);
+    }
+
+    public void faceRight() {
+        // make the rover's body face right
+        facing = OrientationUtil.turnRight(facing);
+    }
+
     public void moveForward() {
+        // make the rover move one unit forward
+
         if (map == null) {
             throw new RuntimeException("No known map information.");
         }
@@ -38,13 +51,13 @@ public class Rover {
         int x = location.x();
         int y = location.y();
 
-        if (facing == Orientation.NORTH) {
+        if (facing == Orientation.FACING_NORTH) {
             y++;
-        } else if (facing == Orientation.EAST) {
+        } else if (facing == Orientation.FACING_EAST) {
             x++;
-        } else if (facing == Orientation.WEST) {
+        } else if (facing == Orientation.FACING_WEST) {
             x--;
-        } else if (facing == Orientation.SOUTH) {
+        } else if (facing == Orientation.FACING_SOUTH) {
             y--;
         }
 
@@ -52,38 +65,6 @@ public class Rover {
         if (map.isPassable(newLocation)) {
             this.location = newLocation;
         }
-    }
-
-    public void faceLeft() {
-        Orientation newOrientation;
-
-        if (facing == Orientation.NORTH) {
-            newOrientation = Orientation.WEST;
-        } else if (facing == Orientation.WEST) {
-            newOrientation = Orientation.SOUTH;
-        } else if (facing == Orientation.SOUTH) {
-            newOrientation = Orientation.EAST;
-        } else { // facing == Orientation.EAST
-            newOrientation = Orientation.NORTH;
-        }
-
-        facing = newOrientation;
-    }
-
-    public void faceRight() {
-        Orientation newOrientation;
-
-        if (facing == Orientation.NORTH) {
-            newOrientation = Orientation.EAST;
-        } else if (facing == Orientation.EAST) {
-            newOrientation = Orientation.SOUTH;
-        } else if (facing == Orientation.SOUTH) {
-            newOrientation = Orientation.WEST;
-        } else { // facing == Orientation.WEST
-            newOrientation = Orientation.NORTH;
-        }
-
-        facing = newOrientation;
     }
 
 }

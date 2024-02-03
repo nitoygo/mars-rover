@@ -1,6 +1,6 @@
-package org.nasa.marsrover.rover.common.types;
+package org.nasa.marsrover.rover.core.application.types;
 
-public enum Movement {
+public enum MoveCode {
 
     FORWARD ("M"),
 
@@ -10,12 +10,12 @@ public enum Movement {
 
     public final String value;
 
-    Movement(String value) {
+    MoveCode(String value) {
         this.value = value;
     }
 
-    public static Movement fromString(String value) {
-        for (Movement move : Movement.values()) {
+    public static MoveCode fromString(String value) {
+        for (MoveCode move : MoveCode.values()) {
             if (move.value.equalsIgnoreCase(value)) {
                 return move;
             }

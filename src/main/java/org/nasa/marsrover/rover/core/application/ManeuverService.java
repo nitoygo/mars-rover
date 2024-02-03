@@ -1,7 +1,8 @@
 package org.nasa.marsrover.rover.core.application;
 
-import org.nasa.marsrover.rover.common.types.Movement;
-import org.nasa.marsrover.rover.core.ports.in.ManeuverCommand;
+import lombok.Setter;
+import org.nasa.marsrover.rover.core.application.types.MoveCode;
+import org.nasa.marsrover.rover.core.ports.in.types.ManeuverCommand;
 import org.nasa.marsrover.rover.core.ports.in.ManeuverUseCase;
 
 import java.util.ArrayList;
@@ -9,32 +10,39 @@ import java.util.List;
 
 public class ManeuverService implements ManeuverUseCase {
 
-    private final Rover rover = Rover.getInstance();
+    @Setter
+    private Rover rover;
 
     @Override
     public void maneuver(ManeuverCommand command) {
-        List<Movement> moves = getMoves(command.instruction());
+        List<MoveCode> moveCodes = getMoves(command.instruction());
 
-        for (Movement move : moves) {
-            if (move == Movement.FORWARD) {
-                rover.moveForward();
-            }
-            else if (move == Movement.LEFT) {
-                rover.faceLeft();
-            }
-            else if (move == Movement.RIGHT) {
-                rover.faceRight();
+        for (MoveCode code : moveCodes) {
+            switch (code) {
+                case FORWARD:
+                    rover.moveForward();
+                    break;
+                case LEFT:
+                    rover.faceLeft();
+                    break;
+                case RIGHT:
+                    rover.faceRight();
+                    break;
+                // Handle any additional enum constants if needed
+                default:
+                    // Handle the default case or ignore if not needed
+                    break;
             }
         }
     }
 
-    private List<Movement> getMoves(String instruction) {
+    private List<MoveCode> getMoves(String instruction) {
         String[] parsedMoves = instruction.split("");
-        ArrayList<Movement> moveList = new ArrayList<>();
+        ArrayList<MoveCode> moveList = new ArrayList<>();
 
         for (String move : parsedMoves) {
             try {
-                moveList.add(Movement.fromString(move));
+                moveList.add(MoveCode.fromString(move));
             } catch(IllegalArgumentException ignore) {}
         }
 

@@ -1,12 +1,14 @@
 package org.nasa.marsrover.rover.core.application;
 
-import org.nasa.marsrover.rover.common.types.Position;
+import lombok.Setter;
+import org.nasa.marsrover.rover.core.ports.in.types.Position;
 import org.nasa.marsrover.rover.core.ports.in.GetPositionUseCase;
 import org.nasa.marsrover.rover.core.ports.in.SetPositionUseCase;
 
 public class PositionService implements GetPositionUseCase, SetPositionUseCase {
 
-    private final Rover rover = Rover.getInstance();
+    @Setter
+    private Rover rover;
 
     @Override
     public Position getPosition() {
