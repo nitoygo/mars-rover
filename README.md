@@ -2,6 +2,12 @@
 
 This project aims to solve and provide a demo application for [Mars Rover Technical Challenge](MarsRover.md).
 
+### Branches
+
+- `master` - Single application containing the minimum required solution for the challenge (no frameworks used)
+- `spring` - Client-Server application using spring boot framework for both client and server
+- `react-spring` - (Not yet implemented) Will contain a very simple react frontend as the client
+
 ### Project Structure
 
 The project was structured with extensibility in mind allowing future features (such as networking) and use cases to be implemented with minimal changes to the existing domain logic.
