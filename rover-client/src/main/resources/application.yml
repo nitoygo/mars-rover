@@ -1,0 +1,7 @@
+spring:
+  main:
+    web-application-type: none
+
+roverclient:
+  serverUrl: "http://localhost:8080"
+  commandApiEndpoint: "/command"
