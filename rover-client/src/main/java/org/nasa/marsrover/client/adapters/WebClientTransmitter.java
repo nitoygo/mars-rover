@@ -22,7 +22,7 @@ public class WebClientTransmitter implements TransmitCommandPort {
     private final RestTemplate restTemplate;
 
     @Override
-    public void transmitCommand(String server, String api, CommandData commandData) {
+    public String transmitCommand(String server, String api, CommandData commandData) {
         String apiUrl = server + api;
 
         try {
@@ -37,7 +37,7 @@ public class WebClientTransmitter implements TransmitCommandPort {
 
             ResponseData responseData = responseEntity.getBody();
             if (responseData != null) {
-                logger.info(responseData.message());
+                return responseData.message();
             }
 
         } catch (HttpClientErrorException e) {
@@ -48,6 +48,7 @@ public class WebClientTransmitter implements TransmitCommandPort {
             logger.warn("Server error: {} - {}", e.getRawStatusCode(), e.getResponseBodyAsString());
         }
 
+        return "No response";
     }
 
 }
