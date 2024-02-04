@@ -35,19 +35,19 @@ The following shows how the project was organized, inspired by the
 #### Download and build the application:
 
 ```
-$ git clone https://github.com/nitoygo/mars-rover
-$ cd mars-rover
-$ ./gradlew build
+> git clone https://github.com/nitoygo/mars-rover
+> cd mars-rover
+> ./gradlew build
 ```
 
 #### Run the application
 
 ```
-$ java -jar .\build\libs\mars-rover-1.0-SNAPSHOT.jar
+> java -jar .\build\libs\mars-rover-1.0-SNAPSHOT.jar
 ```
 
 ```
-Starting command line chat interface...
+Starting command line interface...
 Type 'exit' to end)
 >> LMLMLMLMLM
 0,1,W
@@ -58,6 +58,13 @@ Hint: You can teleport the rover by inputting x,y,direction format.
 1,1,E
 ```
 The above input will teleport the rover to x=1,y=1, and facing East
+
+#### Quick Test
+
+Build and run the application with hard-coded test data.
+```
+> .\scripts\quicktest.bat
+```
 
 ### Roadmap
 

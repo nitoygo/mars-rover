@@ -32,16 +32,22 @@ public class CommandLineInterface {
 
     public void run(String... args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Starting command line chat interface...");
+            System.out.println("Starting command line interface...");
             System.out.println("Type 'exit' to end)");
 
-            String input = "";
-            while (!input.equalsIgnoreCase(EXIT_KEYWORD)) {
+            while (true) {
                 System.out.print(">> ");
-                if (scanner.hasNextLine()) {
-                    input = scanner.nextLine();
-                    handleInput(input);
+
+                if (!scanner.hasNextLine()) {
+                    break;
                 }
+
+                String input = (scanner.nextLine()).trim();
+                if (input.equalsIgnoreCase(EXIT_KEYWORD)) {
+                    break;
+                }
+
+                handleInput(input);
             }
         } catch (Exception e) {
             System.out.println("CLI Error: " + e.getMessage());
