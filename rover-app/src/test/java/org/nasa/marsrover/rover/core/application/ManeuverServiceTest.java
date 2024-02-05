@@ -1,5 +1,6 @@
 package org.nasa.marsrover.rover.core.application;
 
+import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +50,7 @@ class ManeuverServiceTest {
     @Test
     void maneuverShouldHandleEmptyInstruction() {
         maneuverService.maneuver(new ManeuverCommand(""));
-        // No interactions with rover should occur for empty instruction
+        // No interactions with rover should occur for empty data
         verifyNoInteractions(rover);
     }
 
@@ -65,14 +66,13 @@ class ManeuverServiceTest {
 
     @Test
     void maneuverShouldRejectNullInstruction() {
-        assertThrows(NullPointerException.class, () -> maneuverService.maneuver(new ManeuverCommand(null)));
-        //assertThrows(IllegalArgumentException.class, () -> maneuverService.maneuver(new ManeuverCommand(null)));
+        assertThrows(ValidationException.class, () -> maneuverService.maneuver(new ManeuverCommand(null)));
         verifyNoInteractions(rover);
     }
 
     @Test
     void maneuverShouldRejectInvalidMoves() {
-        assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(ValidationException.class, () ->
                 maneuverService.maneuver(
                         new ManeuverCommand("XYZ")));
 

@@ -1,5 +1,5 @@
 package org.nasa.marsrover.common.types.messaging;
 
-public record CommandData (
+public record QueryData (
         String data
 ) {}

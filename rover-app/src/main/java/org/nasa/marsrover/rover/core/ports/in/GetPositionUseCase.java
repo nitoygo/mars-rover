@@ -4,6 +4,6 @@ import org.nasa.marsrover.rover.core.ports.in.types.Position;
 
 public interface GetPositionUseCase {
 
-    Position getPosition();
+    Position getPositionQuery();
 
 }

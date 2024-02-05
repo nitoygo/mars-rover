@@ -14,7 +14,8 @@ public class ApplicationConfig {
             RoverClientConfigProperties roverClientConfigProperties){
         return new RoverClientConfig(
                 roverClientConfigProperties.getServerUrl(),
-                roverClientConfigProperties.getCommandApiEndpoint());
+                roverClientConfigProperties.getManeuverApi(),
+                roverClientConfigProperties.getPositionApi());
     }
 
 }

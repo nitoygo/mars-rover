@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class RoverClientConfigProperties {
 
     private String serverUrl;
-    private String commandApiEndpoint;
-
+    private String maneuverApi;
+    private String positionApi;
+    
 }

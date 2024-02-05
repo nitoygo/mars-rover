@@ -11,9 +11,10 @@ public class RoverClientConfig {
 
     private static final String DEFAULT_SERVER_URL = "localhost:8080";
 
-    private static final String DEFAULT_COMMAND_ENDPOINT = "/command";
+    private static final String DEFAULT_COMMAND_ENDPOINT = "/";
 
     private String serverUrl = DEFAULT_SERVER_URL;
-    private String commandApiEndpoint = DEFAULT_COMMAND_ENDPOINT;
+    private String maneuverApi = DEFAULT_COMMAND_ENDPOINT;
+    private String positionApi = DEFAULT_COMMAND_ENDPOINT;
 
 }

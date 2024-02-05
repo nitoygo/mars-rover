@@ -3,8 +3,7 @@ package org.nasa.marsrover.client.core.application;
 import lombok.RequiredArgsConstructor;
 import org.nasa.marsrover.common.annotations.Service;
 import org.nasa.marsrover.client.core.application.data.RoverClientConfig;
-import org.nasa.marsrover.common.types.messaging.CommandData;
-import org.nasa.marsrover.client.core.ports.TransmitCommandPort;
+import org.nasa.marsrover.client.core.ports.CommunicationPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -19,7 +18,7 @@ public class CommandCenter implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(CommandCenter.class);
     private static final String EXIT_KEYWORD = "EXIT";
 
-    private final TransmitCommandPort transmitCommandPort;
+    private final CommunicationPort communicationPort;
 
     private final RoverClientConfig roverClientConfig;
 
@@ -52,12 +51,26 @@ public class CommandCenter implements CommandLineRunner {
         try {
             logger.info(input);
 
-            String response = transmitCommandPort.transmitCommand(
-                    roverClientConfig.getServerUrl(),
-                    roverClientConfig.getCommandApiEndpoint(),
-                    new CommandData(input));
+            // TODO: consider using keywords to distinguish between commands
+            if (input.matches("^[MLR]*$")) {
+                communicationPort.sendCommand(
+                        roverClientConfig.getServerUrl(),
+                        roverClientConfig.getManeuverApi(),
+                        input);
 
-            logger.info(response);
+                String response = communicationPort.sendQuery(
+                        roverClientConfig.getServerUrl(),
+                        roverClientConfig.getPositionApi(),
+                        // This is currently unused so just pass dummy for now
+                        "");
+
+                logger.info(response);
+            } else {
+                communicationPort.sendCommand(
+                        roverClientConfig.getServerUrl(),
+                        roverClientConfig.getPositionApi(),
+                        input);
+            }
         } catch (Exception e) {
             logger.error("Transmit Error: {}", e.getMessage());
         }
