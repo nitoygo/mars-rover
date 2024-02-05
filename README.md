@@ -6,7 +6,7 @@ This project aims to solve and provide a demo application for [Mars Rover Techni
 
 - `master` - Single application containing the minimum required solution for the challenge (no frameworks used)
 - `spring` - Client-Server application using spring boot framework for both client and server
-- `react-spring` - (Not yet implemented) Will contain a very simple react frontend as the client
+- `react-spring` - Client-Server application with a simple react app as the client
 
 ### General Project Structure
 
