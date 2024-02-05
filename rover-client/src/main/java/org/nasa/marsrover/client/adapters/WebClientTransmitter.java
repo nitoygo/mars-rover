@@ -37,10 +37,10 @@ public class WebClientTransmitter implements CommunicationPort {
             restTemplate.postForEntity(apiUrl, requestEntity, ResponseData.class);
         } catch (HttpClientErrorException e) {
             // Handle client errors (4xx)
-            logger.warn("Client error: {} - {}", e.getRawStatusCode(), e.getResponseBodyAsString());
+            logger.warn("Client error[{}]: {} - {}", apiUrl, e.getRawStatusCode(), e.getResponseBodyAsString());
         } catch (HttpServerErrorException e) {
             // Handle server errors (5xx)
-            logger.warn("Server error: {} - {}", e.getRawStatusCode(), e.getResponseBodyAsString());
+            logger.warn("Server error[{}]: {} - {}", apiUrl, e.getRawStatusCode(), e.getResponseBodyAsString());
         }
     }
 
@@ -61,10 +61,10 @@ public class WebClientTransmitter implements CommunicationPort {
 
         } catch (HttpClientErrorException e) {
             // Handle client errors (4xx)
-            logger.warn("Client error: {} - {}", e.getRawStatusCode(), e.getResponseBodyAsString());
+            logger.warn("Client error[{}]: {} - {}", apiUrl, e.getRawStatusCode(), e.getResponseBodyAsString());
         } catch (HttpServerErrorException e) {
             // Handle server errors (5xx)
-            logger.warn("Server error: {} - {}", e.getRawStatusCode(), e.getResponseBodyAsString());
+            logger.warn("Server error[{}]: {} - {}", apiUrl, e.getRawStatusCode(), e.getResponseBodyAsString());
         }
 
         return "No response";

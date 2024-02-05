@@ -6,6 +6,7 @@ import org.nasa.marsrover.common.types.data.Coordinates;
 import org.nasa.marsrover.common.types.data.Orientation;
 import org.nasa.marsrover.common.types.data.Terrain;
 import org.nasa.marsrover.rover.core.application.utils.OrientationUtil;
+import org.nasa.marsrover.rover.core.ports.in.types.InvalidStateException;
 import org.springframework.stereotype.Component;
 
 @Setter
@@ -37,7 +38,7 @@ public class Rover {
         // make the rover move one unit forward
 
         if (map == null) {
-            throw new RuntimeException("No known map information.");
+            throw new InvalidStateException("No known map information.");
         }
 
         int x = location.x();

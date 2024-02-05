@@ -6,6 +6,7 @@ import org.nasa.marsrover.common.types.data.Coordinates;
 import org.nasa.marsrover.common.types.data.Orientation;
 import org.nasa.marsrover.common.types.messaging.CommandData;
 import org.nasa.marsrover.common.types.messaging.ResponseData;
+import org.nasa.marsrover.rover.core.ports.in.types.InvalidStateException;
 import org.nasa.marsrover.rover.core.ports.in.types.Position;
 import org.nasa.marsrover.common.types.data.Terrain;
 import org.nasa.marsrover.rover.core.ports.in.GetPositionUseCase;
@@ -45,7 +46,7 @@ public class ManeuverApiController {
         try {
             maneuverUseCase.maneuver(new ManeuverCommand(input));
         } catch (Exception e) {
-            throw new IllegalArgumentException("Invalid data: " + input);
+            throw new IllegalArgumentException("Command error: " + e.getMessage());
         }
     }
 
