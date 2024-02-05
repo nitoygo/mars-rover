@@ -6,7 +6,7 @@ This project aims to solve and provide a demo application for [Mars Rover Techni
 
 - `master` - Single application containing the minimum required solution for the challenge (no frameworks used)
 - `spring` - Client-Server application using spring boot framework for both client and server
-- `react-spring` - (Not yet implemented) Will contain a very simple react frontend as the client
+- `react-spring` - Client-Server application with a simple react app as the client
 
 ### General Project Structure
 
@@ -32,6 +32,7 @@ The following shows how the project was organized, inspired by the
 
 - Java 17 Runtime Environment installed and selected
 - Git CLI installed
+- NodeJS v20 /NPM v10 installed
 
 #### Running the application
 
@@ -48,24 +49,21 @@ $ cd mars-rover/rover-server
 $ ./gradlew bootRun
 ```
 
-Build and run the client (Command Center)
+Setup ReactJS client app (Command Center)
 
 ```
-$ cd mars-rover/rover-client
-$ ./gradlew bootRun
+$ cd mars-rover/rover-client-react
+$ npm install
 :
-Starting command line interface...
-Type 'exit' to end)
->> LMLMLMLMLM
-0,1,W
+$ npm start
+:
 ```
-
-Hint: You can teleport the rover by inputting x,y,direction format.
-
+Visit http://localhost:3000 (or check nodejs logs for exact port)  
+Type commands in the text field as you would with the CLI version  
+You may need to setup the rover's initial location by inputting x,y,direction format.
 ```
 1,1,E
 ```
-
 The above input will teleport the rover to x=1,y=1, and facing East
 
 ### Roadmap
@@ -73,7 +71,7 @@ The above input will teleport the rover to x=1,y=1, and facing East
 - [x] Implement basic features
 - [x] Implement basic unit tests
 - [x] Implement backend and frontend using spring framework
-- [ ] Implement frontend using reactjs
+- [x] Implement frontend using reactjs
 - [ ] Implement ci/cd scripts
 
 ### Misc
